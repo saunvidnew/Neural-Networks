@@ -46,10 +46,17 @@ void Matrix::setVal(int r, int c, double v){
 }
 
 double Matrix::getVal(int r, int c){
-    this->values[r][c];
+    return this->values[r][c];
 }
 
 Matrix * Matrix::transpose(){
+    Matrix *m= new Matrix(this->numCols,this->numRows, false);
+    for(int i=0;i<numRows;i++){
+        for(int j=0;j<numCols;j++){
+            m->setVal(j,i,this->getVal(i,j));
 
+        }
 
+    }
+    return m;
 }
