@@ -1,15 +1,17 @@
 // src/main.cpp
 #include <iostream>
-#include "Neuron.hpp"
+#include "include/Neuron.hpp"
+#include "include/Matrix.hpp"
 using namespace std;
 
 int main() {
     Neuron *n=new Neuron(98);
 
-    cout<< "Val: "<< n->getVal() <<endl;
+    Matrix *m= new Matrix(3,2,true);
+    m->printToConsole();
 
-    cout<< "Activated Val: "<< n->getactivatedVal() <<endl;
-    cout<< "Derived Val: "<< n->getderivedVal() <<endl;
+    Matrix *mt= m->transpose();
+    mt->printToConsole();
      
     return 0;
 }
