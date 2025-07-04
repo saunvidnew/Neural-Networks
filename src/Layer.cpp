@@ -40,3 +40,9 @@ Layer::Layer(int size){
 void Layer::setVal(int i, double v){
     this->neurons[i]->setVal(v);
 }
+
+Layer::~Layer() {
+    for (Neuron* n : neurons) {
+        delete n;
+    }
+}

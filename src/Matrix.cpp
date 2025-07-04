@@ -8,7 +8,7 @@ Matrix::Matrix(int numRows, int numCols, bool isRandom){
         for(int j=0;j<numCols;j++){
             double r=0.00;
             if(isRandom){
-                r=this->genrateRandomNo();
+                r=this->generateRandomNo();
             }
             colValues.push_back(r);
         }
@@ -17,10 +17,10 @@ Matrix::Matrix(int numRows, int numCols, bool isRandom){
 
 };
 
-double Matrix::genrateRandomNo(){
+double Matrix::generateRandomNo(){
     std::random_device rd;               // seed
     std::mt19937 gen(rd());              // Mersenne Twister engine
-    std::uniform_int_distribution<> dist(1, 10); // range: 1 to 10
+    std::uniform_int_distribution<> dist(0.1, 1.0); // range: 0.1 to 1
 
     double randomNumber = dist(gen);
     return randomNumber;
@@ -58,5 +58,7 @@ Matrix * Matrix::transpose(){
         }
 
     }
+    
     return m;
 }
+

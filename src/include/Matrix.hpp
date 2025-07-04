@@ -17,7 +17,9 @@ class Matrix{
 
     Matrix *transpose();
 
-    double genrateRandomNo();
+    ~Matrix(){};
+
+    double generateRandomNo();
     double getNumRows(){
         return this->numRows;
     }

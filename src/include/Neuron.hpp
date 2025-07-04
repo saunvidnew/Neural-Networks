@@ -24,6 +24,7 @@ class Neuron{
         return this->derivedVal;
     }
     void setVal(double val);
+    ~Neuron(){};
 
     private:
     double val; // Current value of neuron eg:0.5,0.9

@@ -13,12 +13,15 @@ class NeuralNetwork{
         NeuralNetwork(vector<int> topology);
         void setCurrentInput(vector<double> input);
         void printToConsole();
+        ~NeuralNetwork();
     private:
         int topologySize;
         vector<int> topology;
         vector<Layer *> layers;
         vector<Matrix *> weightMatrices;
         vector<double> input;
+      
+        
 };
 
 #endif

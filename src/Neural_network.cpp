@@ -28,11 +28,23 @@ void NeuralNetwork::printToConsole(){
         if(i==0){
             Matrix *m= this->layers[i]->matrixifyVals();
             m->printToConsole();
+            delete m;
 
         }
         else{
             Matrix *m=this->layers[i]->matrixifyActivatedVals();
             m->printToConsole();
+            delete m;
         }
+    }
+}
+
+NeuralNetwork::~NeuralNetwork() {
+    for (Layer* l : layers) {
+        delete l;
+    }
+
+    for (Matrix* m : weightMatrices) {
+        delete m;
     }
 }

@@ -18,6 +18,7 @@ class Layer{
         Matrix *matrixifyVals();
         Matrix *matrixifyActivatedVals();
         Matrix *matrixifyDerivedVals();
+        ~Layer();
 
         
 
