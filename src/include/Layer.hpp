@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Neuron.hpp"
+#include "Matrix.hpp"
 #include <vector>
 
 using namespace std;
@@ -13,6 +14,12 @@ class Layer{
         vector<Neuron *> neurons;
     public:
         Layer(int size);
+        void setVal(int i, double v);
+        Matrix *matrixifyVals();
+        Matrix *matrixifyActivatedVals();
+        Matrix *matrixifyDerivedVals();
+
+        
 
 };
 
