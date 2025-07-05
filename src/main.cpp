@@ -19,7 +19,10 @@ int main() {
 
     NeuralNetwork *nn= new NeuralNetwork(topology);
     nn->setCurrentInput(input);
+    nn->feedForward();
     nn->printToConsole();
+
+    delete nn;
 
     return 0;
 }
