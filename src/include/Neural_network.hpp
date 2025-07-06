@@ -21,6 +21,8 @@ class NeuralNetwork{
         vector<Layer *> layers;
         vector<Matrix *> weightMatrices;
         vector<double> input;
+        vector<Matrix*> biasMatrices;
+
       
         
 };

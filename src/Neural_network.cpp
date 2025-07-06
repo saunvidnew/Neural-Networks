@@ -12,16 +12,20 @@ void NeuralNetwork::setCurrentInput(vector<double> input){
 NeuralNetwork::NeuralNetwork(vector<int> topology){
     this->topologySize=topology.size();
     this->topology=topology;
-
+    // build layers
     for(int i=0;i<topologySize;i++){
         Layer *l=new Layer(topology[i]);
         this->layers.push_back(l);
     }
-
+    // build weights + biases
     for(int i=0; i<(topologySize-1);i++){
-        Matrix *m= new Matrix(topology[i], topology[i+1], true);
+        Matrix *m= new Matrix(topology[i], topology[i+1], false);
 
         this->weightMatrices.push_back(m);
+        
+        biasMatrices.push_back(
+        new Matrix(1, topology[i+1], true)
+    );
     }
 }
 
@@ -55,7 +59,18 @@ void NeuralNetwork::feedForward() {
         // Multiply transposed weights with prev layer activations
         MultiplyMatrix mm(prevActivated, weightMatrix);
         Matrix *z = mm.execute(); // z is (1 × M)
-        // Set result into current layer
+
+        // get the bias for this layer (i-1 index)
+        Matrix *b = biasMatrices[i-1];
+
+        // add bias into z
+        for (int j = 0; j < topology[i]; j++) {
+            double raw = z->getVal(0, j);
+            double bias = b->getVal(0, j);
+            double shifted = raw + bias;
+            z->setVal(0, j, shifted);
+        }
+        // update the layer with  (your weighted sums + bias)
         for (int j = 0; j < topology[i]; j++) {
             double val = z->getVal(0, j);
             layers[i]->setVal(j, val);  // Neuron activates internally
@@ -76,4 +91,5 @@ NeuralNetwork::~NeuralNetwork() {
     for (Matrix* m : weightMatrices) {
         delete m;
     }
+    for (auto b : biasMatrices)   delete b;
 }
